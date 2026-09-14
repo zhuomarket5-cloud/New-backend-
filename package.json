@@ -1,0 +1,10 @@
+{
+  "name": "zhuomarket-backend-photo-ready",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ZhuoMarket backend compatible with the existing frontend, including real multipart image uploads.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
