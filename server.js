@@ -12,8 +12,8 @@ app.set("trust proxy", 1);
 
 const PORT = Number(process.env.PORT || 10000);
 const JWT_SECRET = process.env.JWT_SECRET || "CHANGE_ME_ZHUOMARKET_SECRET";
-const ADMIN_EMAIL = String(process.env.ADMIN_EMAIL || "admin@zhuomarket.com").trim().toLowerCase();
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "ChangeMe123!";
+const ADMIN_EMAIL = String(process.env.ADMIN_EMAIL || "Demonexes95@gmail.com").trim().toLowerCase();
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Wood 2009@zhuo";
 const FRONTEND_URL = process.env.FRONTEND_URL || "*";
 
 const DATA_DIR = path.join(__dirname, "data");
