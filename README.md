@@ -1,36 +1,37 @@
-# ZhuoMarket Backend — PHOTO READY
+# ZhuoMarket Backend — PHOTO READY V2
 
-Backend Express prêt pour Render.
-
-## Upload photo
-Route réelle:
-POST /api/uploads
-
-Le backend accepte les champs multipart:
-- `image`
-- `file`
-- `photo`
-- et tout autre nom de champ multipart
-
-Formats: JPG/JPEG, PNG, WEBP, GIF
-Taille max: 8 MB par image.
-Le backend renvoie `url`, `image`, `imageUrl`, `fileUrl` et `path`.
-
-## Déploiement Render
-- Runtime: Node
-- Build Command: `npm install`
-- Start Command: `npm start`
-
-Variables:
-- `JWT_SECRET` = une longue valeur secrète
-- `ADMIN_EMAIL` = Gmail/email admin
-- `ADMIN_PASSWORD` = mot de passe admin
-- `FRONTEND_URL` = URL exacte du frontend Vercel (ou `*` pour test)
+Backend Express prepared for Render and the current ZhuoMarket frontend.
 
 ## Important
-Les fichiers uploadés sont stockés dans `/uploads`. Sur Render, le disque local est éphémère sur les services sans disque persistant.
-Pour une production où les photos doivent survivre aux redéploiements/restarts, il faudra ensuite brancher Cloudinary ou un stockage objet persistant.
+- Real multipart image upload: `POST /api/uploads`
+- Accepts the frontend's `image` field (and also other multipart field names).
+- JPG/JPEG/PNG/WEBP/GIF, max 8 MB per image.
+- Requires the user's Bearer token.
+- Returns a public `/uploads/...` URL.
+- Includes compatibility routes for products, promotions, admin users/orders, notifications, support messages, streaming orders/plans, payment methods, and auth.
+- PayPal is NOT simulated. Until real PayPal credentials/integration are configured, its routes return a clear configuration error.
 
-## Compte admin initial
-Créé automatiquement avec ADMIN_EMAIL / ADMIN_PASSWORD au premier démarrage.
-Change les variables avant la mise en production.
+## Render
+Build Command:
+`npm install`
+
+Start Command:
+`npm start`
+
+Set environment variables in Render:
+- `FRONTEND_URL` = your Vercel frontend URL
+- `JWT_SECRET` = a strong random secret
+- `ADMIN_EMAIL` = primary admin email
+- `ADMIN_PASSWORD` = primary admin password
+
+## Photos on Render
+The included upload folder uses local disk. Render's ephemeral filesystem can lose uploaded photos after a restart/redeploy unless you configure persistent storage or move uploads to an object-storage service such as Cloudinary/S3.
+
+## First test after deployment
+Open:
+`/health`
+
+Expected:
+`{"ok":true,...}`
+
+Then test login and finally photo upload from the ZhuoMarket app.
